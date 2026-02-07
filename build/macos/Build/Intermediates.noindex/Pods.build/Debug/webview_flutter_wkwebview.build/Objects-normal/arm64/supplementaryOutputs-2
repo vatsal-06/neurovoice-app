@@ -1,0 +1,44 @@
+{
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/GetTrustResultResponse.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponse.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponse.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponse.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponse.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponse.swiftdeps"
+  },
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/GetTrustResultResponseProxyAPIDelegate.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponseProxyAPIDelegate.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponseProxyAPIDelegate.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponseProxyAPIDelegate.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponseProxyAPIDelegate.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/GetTrustResultResponseProxyAPIDelegate.swiftdeps"
+  },
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/HTTPCookieProxyAPIDelegate.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieProxyAPIDelegate.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieProxyAPIDelegate.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieProxyAPIDelegate.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieProxyAPIDelegate.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieProxyAPIDelegate.swiftdeps"
+  },
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/HTTPCookieStoreProxyAPIDelegate.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieStoreProxyAPIDelegate.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieStoreProxyAPIDelegate.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieStoreProxyAPIDelegate.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieStoreProxyAPIDelegate.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPCookieStoreProxyAPIDelegate.swiftdeps"
+  },
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/HTTPURLResponseProxyAPIDelegate.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPURLResponseProxyAPIDelegate.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPURLResponseProxyAPIDelegate.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPURLResponseProxyAPIDelegate.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPURLResponseProxyAPIDelegate.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/HTTPURLResponseProxyAPIDelegate.swiftdeps"
+  },
+  "/Users/vatsalgupta/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.6/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/NavigationActionProxyAPIDelegate.swift" : {
+    "const-values" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/NavigationActionProxyAPIDelegate.swiftconstvalues",
+    "dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/NavigationActionProxyAPIDelegate.d",
+    "diagnostics" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/NavigationActionProxyAPIDelegate.dia",
+    "object" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/NavigationActionProxyAPIDelegate.o",
+    "swift-dependencies" : "/Users/vatsalgupta/Developer/neurovoice-app/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/NavigationActionProxyAPIDelegate.swiftdeps"
+  }
+}

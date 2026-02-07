@@ -17,9 +17,7 @@ class HistoryView extends StatelessWidget {
 
   // ---------------- FETCH HISTORY ----------------
   Future<List<Map<String, dynamic>>> _fetchHistory() async {
-    final response = await http.get(
-      Uri.parse('$backendBaseUrl/$userId'),
-    );
+    final response = await http.get(Uri.parse('$backendBaseUrl/$userId'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load history');
@@ -91,8 +89,9 @@ class HistoryView extends StatelessWidget {
 
           // -------- SORT (Newest first) --------
           results.sort(
-            (a, b) => DateTime.parse(b['createdAt'])
-                .compareTo(DateTime.parse(a['createdAt'])),
+            (a, b) => DateTime.parse(
+              b['createdAt'],
+            ).compareTo(DateTime.parse(a['createdAt'])),
           );
 
           // -------- LIST --------
@@ -105,13 +104,15 @@ class HistoryView extends StatelessWidget {
 
               final String testType = item['type']; // face | voice
               final String riskLevel = item['level'];
-              final double riskScore =
-                  (item['score'] as num).toDouble();
+              final double riskScore = (item['score'] as num).toDouble();
 
-              final DateTime time =
-                  DateTime.parse(item['createdAt']).toLocal();
+              final DateTime time = DateTime.parse(item['createdAt']).toLocal();
 
               final Color accent = _riskColor(riskLevel);
+
+              // ✅ SAFE FEATURE EXTRACTION
+              final Map<String, dynamic>? features =
+                  item['features'] as Map<String, dynamic>?;
 
               return ListTile(
                 leading: Container(
@@ -152,12 +153,12 @@ class HistoryView extends StatelessWidget {
                     ],
 
                     // -------- VOICE METRICS --------
-                    if (testType == 'voice') ...[
+                    if (testType == 'voice' && features != null) ...[
                       const SizedBox(height: 4),
                       Text(
-                        "Jitter: ${item['features']['jitter'].toStringAsFixed(3)} • "
-                        "Shimmer: ${item['features']['shimmer'].toStringAsFixed(3)} • "
-                        "Pitch: ${item['features']['pitch'].toStringAsFixed(1)}",
+                        "Jitter: ${(features['jitter'] as num?)?.toStringAsFixed(3) ?? '--'} • "
+                        "Shimmer: ${(features['shimmer'] as num?)?.toStringAsFixed(3) ?? '--'} • "
+                        "Pitch: ${(features['pitch'] as num?)?.toStringAsFixed(1) ?? '--'}",
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],

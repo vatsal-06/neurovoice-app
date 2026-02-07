@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		zsdMCRxXLh/m3tN6Lcc8wRIt7RU=
+		wjMA6ycwuonzq4D/LZfMgaLZOOQ=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		FuYbiLDoniwteDf0j9XWdA8qgfM=
+		JemOis6EdLPEz/d6pm2aSRMgslU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		6tnF5qDjTyHgerwGQnWzSiyDFGc=
+		ECesgKPU1flsvKBsKPwdi8g6Yh8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/core/assets/images/brainwave.png</key>
 		<data>
@@ -294,7 +294,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		reYj7Dof5O/n8SEbZXIXXWoUEnc=
+		KK1NPKwfgQ+4NhIPVS7ZLDoGy4E=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -302,11 +302,11 @@
 		</data>
 		<key>Runner.debug.dylib</key>
 		<data>
-		485bKM2HngI+BMwb7pz7JYRfZxs=
+		3RKnn10hJbQGHD5NbydNQdVY5p0=
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		UbAdGKHARWmis2DJymf4NlIV8AM=
+		ejHF4Ua3Sjuz9uHN+nClDRIN2uE=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -397,7 +397,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			82SJH2nqDLN8HX/hYdq7N0wGEHkecSrxIVnCXSIagKI=
+			EkhVrFmkSCeJf+m++amM96i/GAzVI7U0nnT2Ob+IzN0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -411,7 +411,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9SYmt9D2VFKGXHxZO1d/Jx7/5r00gl61LGA3dIInAoc=
+			Very1wy/LNA3ew0kAXNTGsd2PDDQDz7XI419vzGihnI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -460,7 +460,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PjUTftozeeJftUPK8xhlX5EZxXUJdZ0obJXbmH5ctTE=
+			zRIQuVDZiKiZWIztZQphbOBgMPOReAE91jQSRDgsIBs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/core/assets/images/brainwave.png</key>
@@ -831,14 +831,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QLGVpKAMO8nkkaSzcv6+OQGaYXvcoyxIjjlprh1pjdE=
+			HSrqrwQVSKM5TcNNCcBRYK95mDXe75+wsUVBJSqdY5c=
 			</data>
 		</dict>
 		<key>__preview.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+QmF6mJs2xc/u+B1Y+m9QWTESOwp7cdX4AtVHjEVk5Q=
+			NvlUI87vGo+kqqt2KUHoNzuQKJKiSEydWgDRlIy4Pwo=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>

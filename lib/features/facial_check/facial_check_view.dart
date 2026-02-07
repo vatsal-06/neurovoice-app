@@ -26,7 +26,7 @@ class _FacialCheckViewState extends State<FacialCheckView> {
 
   // 🔗 Backend API (CHANGE TO YOUR RENDER URL)
   static const String backendUrl =
-      'https://YOUR-BACKEND.onrender.com/api/face-results';
+      'https://neurovoice-db.onrender.com/api/face-results';
 
   @override
   void initState() {
@@ -63,6 +63,8 @@ class _FacialCheckViewState extends State<FacialCheckView> {
             'assessmentResult',
             onMessageReceived: (message) async {
               debugPrint('🧠 Facial result received: ${message.message}');
+              debugPrint('🔥 JS MESSAGE RECEIVED');
+              debugPrint('RAW MESSAGE: ${message.message}');
 
               final decoded = jsonDecode(message.message);
               final result = FacialResult.fromJson(decoded);

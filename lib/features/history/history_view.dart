@@ -1,41 +1,35 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:neurovoice_app/core/constants/colors.dart';
 import 'package:neurovoice_app/core/constants/text_styles.dart';
-import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class HistoryView extends StatelessWidget {
   const HistoryView({super.key});
 
-  Future<void> _clearHistory(BuildContext context) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("Clear History"),
-        content: const Text(
-          "This will permanently delete all past test results. "
-          "This action cannot be undone.",
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text("Cancel"),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text("Clear", style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
+  // 🔗 Unified history endpoint
+  static const String backendBaseUrl =
+      'https://neurovoice-db.onrender.com/api/history';
+
+  // Temporary user id (replace with auth later)
+  static const String userId = 'demo-user';
+
+  // ---------------- FETCH HISTORY ----------------
+  Future<List<Map<String, dynamic>>> _fetchHistory() async {
+    final response = await http.get(
+      Uri.parse('$backendBaseUrl/$userId'),
     );
 
-    if (confirmed == true) {
-      final voiceBox = Hive.box('voice_results');
-      final faceBox = Hive.box('facial_results');
-      await voiceBox.clear();
-      await faceBox.clear();
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load history');
     }
+
+    final List data = jsonDecode(response.body);
+    return data.cast<Map<String, dynamic>>();
   }
 
+  // ---------------- UI HELPERS ----------------
   Color _riskColor(String level) {
     switch (level) {
       case "High":
@@ -60,53 +54,33 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final voiceBox = Hive.box('voice_results');
-    final faceBox = Hive.box('facial_results');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("History", style: AppTextStyles.title),
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.delete_outline, size: 26),
-            tooltip: "Clear history",
-            onPressed: () => _clearHistory(context),
-          ),
-        ],
       ),
-      body: AnimatedBuilder(
-        animation: Listenable.merge([
-          voiceBox.listenable(),
-          faceBox.listenable(),
-        ]),
-        builder: (_, __) {
-          final List<Map<String, dynamic>> allResults = [];
-
-          // ---- VOICE RESULTS ----
-          for (var item in voiceBox.values) {
-            allResults.add({
-              ...Map<String, dynamic>.from(item),
-              'testType': 'voice',
-            });
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: _fetchHistory(),
+        builder: (context, snapshot) {
+          // -------- LOADING --------
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
           }
 
-          // ---- FACE RESULTS ----
-          for (var item in faceBox.values) {
-            final map = Map<String, dynamic>.from(item);
-
-            allResults.add({
-              'riskLevel': map['level'],
-              'riskScore': (map['percentage'] as int) / 100.0,
-              'blinkRate': map['blinkRate'],
-              'motion': map['motion'],
-              'asymmetry': map['asymmetry'],
-              'timestamp': map['timestamp'],
-              'testType': 'face',
-            });
+          // -------- ERROR --------
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text(
+                "Failed to load history",
+                style: TextStyle(color: AppColors.red),
+              ),
+            );
           }
 
-          if (allResults.isEmpty) {
+          final results = snapshot.data ?? [];
+
+          // -------- EMPTY --------
+          if (results.isEmpty) {
             return const Center(
               child: Text(
                 "No history yet",
@@ -115,25 +89,27 @@ class HistoryView extends StatelessWidget {
             );
           }
 
-          // Newest first
-          allResults.sort(
-            (a, b) => DateTime.parse(
-              b['timestamp'],
-            ).compareTo(DateTime.parse(a['timestamp'])),
+          // -------- SORT (Newest first) --------
+          results.sort(
+            (a, b) => DateTime.parse(b['createdAt'])
+                .compareTo(DateTime.parse(a['createdAt'])),
           );
 
+          // -------- LIST --------
           return ListView.separated(
             padding: const EdgeInsets.all(16),
-            itemCount: allResults.length,
+            itemCount: results.length,
             separatorBuilder: (_, __) => const Divider(),
             itemBuilder: (_, index) {
-              final item = allResults[index];
+              final item = results[index];
 
-              final double riskScore = (item['riskScore'] as num).toDouble();
-              final String riskLevel = item['riskLevel'];
-              final String testType = item['testType'];
+              final String testType = item['type']; // face | voice
+              final String riskLevel = item['level'];
+              final double riskScore =
+                  (item['score'] as num).toDouble();
 
-              final DateTime time = DateTime.parse(item['timestamp']).toLocal();
+              final DateTime time =
+                  DateTime.parse(item['createdAt']).toLocal();
 
               final Color accent = _riskColor(riskLevel);
 
@@ -153,7 +129,7 @@ class HistoryView extends StatelessWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Score: ${(riskScore * 100).toStringAsFixed(1)}%"),
+                    Text("Score: ${riskScore.toStringAsFixed(1)}%"),
                     const SizedBox(height: 4),
                     Text(
                       "Test: ${testType.toUpperCase()}",
@@ -164,13 +140,24 @@ class HistoryView extends StatelessWidget {
                       ),
                     ),
 
-                    // 👇 Facial-only metrics
+                    // -------- FACE METRICS --------
                     if (testType == 'face') ...[
                       const SizedBox(height: 4),
                       Text(
                         "Blink: ${item['blinkRate'].toStringAsFixed(1)}/min • "
                         "Motion: ${item['motion'].toStringAsFixed(2)} • "
                         "Asym: ${item['asymmetry'].toStringAsFixed(3)}",
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ],
+
+                    // -------- VOICE METRICS --------
+                    if (testType == 'voice') ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        "Jitter: ${item['features']['jitter'].toStringAsFixed(3)} • "
+                        "Shimmer: ${item['features']['shimmer'].toStringAsFixed(3)} • "
+                        "Pitch: ${item['features']['pitch'].toStringAsFixed(1)}",
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],

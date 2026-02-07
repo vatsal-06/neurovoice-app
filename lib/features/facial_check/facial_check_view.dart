@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:neurovoice_app/core/models/face_result.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -20,63 +20,86 @@ class _FacialCheckViewState extends State<FacialCheckView> {
   late final WebViewController _controller;
   bool _isLoading = true;
 
+  // 🔗 React app
   static const String facialCheckUrl =
       'https://level2-mediapipe-website.onrender.com';
+
+  // 🔗 Backend API (CHANGE TO YOUR RENDER URL)
+  static const String backendUrl =
+      'https://YOUR-BACKEND.onrender.com/api/face-results';
 
   @override
   void initState() {
     super.initState();
 
-    /// ✅ PLATFORM-SAFE CREATION PARAMS
+    // ---------- PLATFORM CREATION PARAMS ----------
     final PlatformWebViewControllerCreationParams params =
-        PlatformWebViewControllerCreationParams();
-
-    /// ✅ iOS: ENABLE INLINE VIDEO (PREVENT FULLSCREEN HIJACK)
-    final PlatformWebViewControllerCreationParams effectiveParams =
         (!kIsWeb && Platform.isIOS)
-        ? WebKitWebViewControllerCreationParams(
-            allowsInlineMediaPlayback: true,
-            mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+            ? WebKitWebViewControllerCreationParams(
+                allowsInlineMediaPlayback: true,
+                mediaTypesRequiringUserAction:
+                    const <PlaybackMediaTypes>{},
+              )
+            : const PlatformWebViewControllerCreationParams();
+
+    _controller =
+        WebViewController.fromPlatformCreationParams(params)
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setBackgroundColor(Colors.white)
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onPageStarted: (_) {
+                setState(() => _isLoading = true);
+              },
+              onPageFinished: (_) {
+                setState(() => _isLoading = false);
+              },
+              onWebResourceError: (error) {
+                debugPrint('WebView error: $error');
+              },
+            ),
           )
-        : params;
+          ..addJavaScriptChannel(
+            'assessmentResult',
+            onMessageReceived: (message) async {
+              debugPrint('🧠 Facial result received: ${message.message}');
 
-    _controller = WebViewController.fromPlatformCreationParams(effectiveParams)
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Colors.white)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (_) {
-            setState(() => _isLoading = true);
-          },
-          onPageFinished: (_) {
-            setState(() => _isLoading = false);
-          },
-          onWebResourceError: (error) {
-            debugPrint('WebView error: $error');
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        'assessmentResult',
-        onMessageReceived: (message) async {
-          debugPrint('🧠 Facial result received: ${message.message}');
+              final decoded = jsonDecode(message.message);
+              final result = FacialResult.fromJson(decoded);
 
-          final decoded = jsonDecode(message.message);
-          final result = FacialResult.fromJson(decoded);
+              await _sendFaceResultToBackend(result);
 
-          final box = Hive.box('facial_results');
-          await box.add(result.toJson());
+              debugPrint('✅ Result sent to backend');
+            },
+          )
+          ..loadRequest(Uri.parse(facialCheckUrl));
 
-          debugPrint('✅ Result saved to Hive');
-        },
-      )
-      ..loadRequest(Uri.parse(facialCheckUrl));
-
-    /// ✅ ANDROID: allow camera autoplay
+    // ---------- ANDROID AUTOPLAY ----------
     if (!kIsWeb && Platform.isAndroid) {
       final androidController =
           _controller.platform as AndroidWebViewController;
       androidController.setMediaPlaybackRequiresUserGesture(false);
+    }
+  }
+
+  // ---------- SEND RESULT TO BACKEND ----------
+  Future<void> _sendFaceResultToBackend(FacialResult result) async {
+    final response = await http.post(
+      Uri.parse(backendUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'userId': 'demo-user', // TODO: replace with real user id later
+        'percentage': result.percentage,
+        'level': result.level,
+        'blinkRate': result.blinkRate,
+        'motion': result.motion,
+        'asymmetry': result.asymmetry,
+      }),
+    );
+
+    if (response.statusCode != 201) {
+      debugPrint('❌ Failed to send result: ${response.body}');
+      throw Exception('Failed to store facial result');
     }
   }
 

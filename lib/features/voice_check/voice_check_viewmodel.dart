@@ -1,8 +1,10 @@
 import 'dart:async';
-import 'package:neurovoice_app/core/network/voice_ml_api.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:neurovoice_app/core/network/voice_ml_api.dart';
 import 'package:neurovoice_app/core/utils/audio_helper.dart';
-import 'package:hive/hive.dart';
 
 /// ===============================
 /// Test Type Registry (Extensible)
@@ -12,11 +14,6 @@ class TestTypes {
   static const String face = 'face';
   static const String tremors = 'tremors';
 }
-
-/// ===============================
-/// Hive Constants
-/// ===============================
-const String kResultsBox = 'voice_results';
 
 class VoiceCheckViewModel extends ChangeNotifier {
   final AudioRecorderService _audioService = AudioRecorderService();
@@ -37,17 +34,25 @@ class VoiceCheckViewModel extends ChangeNotifier {
   /// ML OUTPUT
   /// ===============================
   bool isUploading = false;
-  double? confidence; // risk_score
+  double? confidence; // risk_score (0–1)
   String? riskLevel; // risk_level
   String? errorMessage;
 
   /// ===============================
-  /// CLINICAL INPUTS (NEW)
+  /// CLINICAL INPUTS
   /// ===============================
-  int? ac; // age category (binary)
+  int? ac; // age category
   int? nth; // neurological test history
   int? htn; // hypertension
   final int updrs = 0; // fixed for current model
+
+  /// ===============================
+  /// BACKEND CONFIG
+  /// ===============================
+  static const String backendUrl =
+      'https://neurovoice-db.onrender.com/api/voice-results';
+
+  static const String userId = 'demo-user'; // replace after auth
 
   // ===============================
   // GETTERS
@@ -83,7 +88,6 @@ class VoiceCheckViewModel extends ChangeNotifier {
   Future<void> startRecording() async {
     if (_isRecording) return;
 
-    // 🔒 Ensure clinical form was filled
     if (ac == null || nth == null || htn == null) {
       errorMessage = 'Clinical information missing.';
       notifyListeners();
@@ -98,14 +102,17 @@ class VoiceCheckViewModel extends ChangeNotifier {
     _isRecording = true;
 
     _recordingTimer?.cancel();
-    _recordingTimer = Timer.periodic(const Duration(seconds: 1), (timer) async {
-      if (remainingSeconds <= 0) {
-        await stopRecording();
-      } else {
-        remainingSeconds--;
-        notifyListeners();
-      }
-    });
+    _recordingTimer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) async {
+        if (remainingSeconds <= 0) {
+          await stopRecording();
+        } else {
+          remainingSeconds--;
+          notifyListeners();
+        }
+      },
+    );
   }
 
   Future<void> stopRecording() async {
@@ -135,20 +142,21 @@ class VoiceCheckViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // Smooth progress animation
+      // Progress animation
       _progressTimer?.cancel();
-      _progressTimer = Timer.periodic(const Duration(milliseconds: 300), (
-        timer,
-      ) {
-        if (!isUploading || _disposed) {
-          timer.cancel();
-          return;
-        }
-        if (processProgress < 0.9) {
-          processProgress += 0.03;
-          notifyListeners();
-        }
-      });
+      _progressTimer = Timer.periodic(
+        const Duration(milliseconds: 300),
+        (timer) {
+          if (!isUploading || _disposed) {
+            timer.cancel();
+            return;
+          }
+          if (processProgress < 0.9) {
+            processProgress += 0.03;
+            notifyListeners();
+          }
+        },
+      );
 
       final response = await VoiceMlApi.uploadWav(
         wavPath: recordedFilePath!,
@@ -164,23 +172,12 @@ class VoiceCheckViewModel extends ChangeNotifier {
       riskLevel = response['risk_level'] as String;
 
       // ===============================
-      // SAVE RESULT TO HISTORY
+      // SEND RESULT TO BACKEND (NO HIVE)
       // ===============================
-      final box = Hive.box(kResultsBox);
-      box.add({
-        'riskScore': confidence,
-        'riskLevel': riskLevel,
-        'timestamp': DateTime.now().toIso8601String(),
-        'testType': TestTypes.voice,
-        'ac': ac,
-        'nth': nth,
-        'htn': htn,
-        'updrs': updrs,
-      });
+      await _sendVoiceResultToBackend();
 
       isUploading = false;
       processProgress = 1.0;
-
       _navigateToResults = true;
       notifyListeners();
     } catch (e) {
@@ -189,6 +186,28 @@ class VoiceCheckViewModel extends ChangeNotifier {
       processProgress = 0.0;
       errorMessage = 'Unable to analyze voice.';
       notifyListeners();
+    }
+  }
+
+  Future<void> _sendVoiceResultToBackend() async {
+    final response = await http.post(
+      Uri.parse(backendUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'userId': userId,
+        'riskScore': confidence, // 0–1
+        'riskLevel': riskLevel,
+        'features': {
+          'ac': ac,
+          'nth': nth,
+          'htn': htn,
+          'updrs': updrs,
+        },
+      }),
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception('Failed to save voice result');
     }
   }
 

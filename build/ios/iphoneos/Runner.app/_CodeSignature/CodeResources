@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		pKPn5ogCb9R/9zjk+v4qFJ6KOXk=
+		zsdMCRxXLh/m3tN6Lcc8wRIt7RU=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		NW916Jt9iI4/h8kFobYU/xuvN2g=
+		FuYbiLDoniwteDf0j9XWdA8qgfM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		1iroL+4ZHshXUWeggsolDzVBJzA=
+		YOn6l27MtPgncwCei1WAzfrzayA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NativeAssetsManifest.json</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		2JDAyGOPFBTJwfE1K1tq+uLGt9s=
+		6tnF5qDjTyHgerwGQnWzSiyDFGc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/core/assets/images/brainwave.png</key>
 		<data>
@@ -222,7 +222,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		YVonGvD8A4Gb75CRr2Vxzz07hlE=
+		GfYum6pOFcr4MugwUZWhlYaksjM=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/Info.plist</key>
 		<data>
@@ -242,7 +242,7 @@
 		</data>
 		<key>Frameworks/record_ios.framework/record_ios</key>
 		<data>
-		q5HOcdVVVTlrZPYeyOnDogde1Mk=
+		/5hCS56ccMcufEbpjbuFz3vo/DE=
 		</data>
 		<key>Frameworks/record_ios.framework/record_ios_privacy.bundle/Info.plist</key>
 		<data>
@@ -262,7 +262,7 @@
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
 		<data>
-		rYt46Iosm5F6WlhCtP3AhjgSFqo=
+		sZvI76T+w/f4hKM7F2uuwp2ATHU=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/Info.plist</key>
 		<data>
@@ -282,7 +282,7 @@
 		</data>
 		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview</key>
 		<data>
-		WfMSjrVKEO4O1E/4BoL6NwOGmpM=
+		7eZgs2b+8NAl8ewz5q4Ngc8nfuY=
 		</data>
 		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/Info.plist</key>
 		<data>
@@ -294,7 +294,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		metq1SIL++izWqe94W3OX7bcung=
+		reYj7Dof5O/n8SEbZXIXXWoUEnc=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -302,15 +302,23 @@
 		</data>
 		<key>Runner.debug.dylib</key>
 		<data>
-		hwWp2U3up87nrDEopI+/BEugWks=
+		485bKM2HngI+BMwb7pz7JYRfZxs=
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		xabWnidb6eTAkNAOmIG4YxrDNnM=
+		UbAdGKHARWmis2DJymf4NlIV8AM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
 		ceiOTfKU7hiujtqCPaTqQyO39sE=
+		</data>
+		<key>permission_handler_apple_privacy.bundle/Info.plist</key>
+		<data>
+		sJ1ybLLIH/h0o6z98jsjUQ9mfAc=
+		</data>
+		<key>permission_handler_apple_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		PgAJpgZlblxKbgx9eihlgflAQU8=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -389,7 +397,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qGcvIWVIrKnD2RNU2GL/I/n74772xtQdv9fogZlekoY=
+			82SJH2nqDLN8HX/hYdq7N0wGEHkecSrxIVnCXSIagKI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -403,7 +411,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zZ5ZByNbQG/2ID9m2E6uyounbr0o+66TELOnyippVFo=
+			9SYmt9D2VFKGXHxZO1d/Jx7/5r00gl61LGA3dIInAoc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -424,7 +432,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rY3OqolavrQQlRDXehsi6aPk/5imtjZIqdhnNzPYUbM=
+			0Byqx1tnl2wy4Wi2DyDvu9InBUOb2n3xH1J2gbEyDEc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/NativeAssetsManifest.json</key>
@@ -452,7 +460,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QD2QoJQyfZ1OIArDjiXh76jpuODP/whr67/ikFuNIb8=
+			PjUTftozeeJftUPK8xhlX5EZxXUJdZ0obJXbmH5ctTE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/core/assets/images/brainwave.png</key>
@@ -697,7 +705,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qGdvTww+nWQZpA31rCXGm7pRc3j49onKpJW57EGDPGI=
+			ZZ5R9Jm4yQTu0/tDIM7XxUiCohpWDMTn1vGPanv1SlA=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/Info.plist</key>
@@ -732,7 +740,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			l3CEH4DGWqWYlrc5ks/KHL6qEk0Eo9v1NxclPZkcnkY=
+			8kpKsCJv3gZhErgH1FvF65CUBq4aJmrSaf3mwi9YWA8=
 			</data>
 		</dict>
 		<key>Frameworks/record_ios.framework/record_ios_privacy.bundle/Info.plist</key>
@@ -767,7 +775,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3NorhHnD1+koTImmqzNtzSV8mXhd1phA5yWK1Gtk894=
+			Q5Vzg6OMDdb95bOL1MrMDbpCGr0B+gVmcj0xLD4v6D0=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/Info.plist</key>
@@ -802,7 +810,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			czyRYpbw8oLxhSWftmk5heTNCBtx/naap8j3hShMGOw=
+			r6SDHsszzVxwAr9qj7ASb9zmkCcnmeqAbW8rAeqlcm4=
 			</data>
 		</dict>
 		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/Info.plist</key>
@@ -823,14 +831,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qmiOiqalDM73DA0woAFiYP+jGq+uAEdjXNkvvZAv9Z4=
+			QLGVpKAMO8nkkaSzcv6+OQGaYXvcoyxIjjlprh1pjdE=
 			</data>
 		</dict>
 		<key>__preview.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			eE4dxwRIRcv+K4htq0FJSy4Aryl9dQwPioagVWgaq40=
+			+QmF6mJs2xc/u+B1Y+m9QWTESOwp7cdX4AtVHjEVk5Q=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
@@ -838,6 +846,20 @@
 			<key>hash2</key>
 			<data>
 			6OTrnALzmoBRzJiqAdqksyFiylUDX5mALMsuwXyyH8w=
+			</data>
+		</dict>
+		<key>permission_handler_apple_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VNDAcLpNKUrHFi50Kn6e3V3PnHWH7PiysFcoKJQpEFc=
+			</data>
+		</dict>
+		<key>permission_handler_apple_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ETZWiZY6EZHpaiLgs59i8FuG0NJKvoBAXBpc7vCamxs=
 			</data>
 		</dict>
 	</dict>
